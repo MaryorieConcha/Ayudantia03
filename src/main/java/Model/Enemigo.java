@@ -7,7 +7,7 @@ public abstract class Enemigo {
 	private Dungeon calabozo;
 
 	public abstract String getTipo();
-	public abstract void atacar();
+	public abstract int atacar(Personaje player);
 
 	public Enemigo(int vida, int fuerza, int velocidad) {
 		this.vida = vida;

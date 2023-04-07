@@ -21,6 +21,8 @@ public class Personaje {
 		this.energiaMagica = energiaMagica;
 	}
 
+	public Personaje() {}
+
 	public void enfrentarEnemigo(Enemigo monstruo, Personaje personaje){
 		System.out.println(personaje.getName() + " se enfrenta a un enemigo de tipo: " + monstruo.getTipo());
 		System.out.println("Estadisticas del enemigo:");
@@ -29,17 +31,25 @@ public class Personaje {
 	}
 
 	public int recibirAtaque (Enemigo monstruo,Personaje player){
-		monstruo.atacar();
+		monstruo.atacar(player);
+		if (player.getVida() == 0 || player.getVida() < 0){
+			System.out.println(player.getName() + "ha muerto.");
+		}
 		return player.getVida();
 	}
 
-	public void atacar(Personaje player){
-		System.out.println(player.getName() + " ataca.");
+	public void atacar(Personaje player, Personaje player2){
+		System.out.println(player.getName() + " es atacado por: " + player2.getName());
+		System.out.println("Ataque inválido.");
 		System.out.println("Miembros de la misma party no reciben daño amigo.");
 	}
 
 	public int getVida() {
 		return vida;
+	}
+
+	public void setVida(int vida) {
+		this.vida = vida;
 	}
 
 	public String getName() {

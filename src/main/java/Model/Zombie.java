@@ -16,19 +16,23 @@ public class Zombie extends Enemigo {
 		return "Zombie";
 	}
 
-	public void atacar() {
-		garras();
+	public int atacar(Personaje player) {
+		int damage = super.getFuerza();
+		int vida = player.getVida();
+		garras(player);
+
+		return player.getVida();
 	}
 
-	public int garras(){
+	public int garras(Personaje player){
 		System.out.println("Zombie usa garras.");
 		int indice = (int) ((Math.random()*100)+1);
 		indice = this.nivelDeEnfermedad + indice;
 		if (indice == 100){
 			System.out.println("Zombie a aplicado un efecto de estado negativo.");
-			System.out.println("Tu Nivel de Enfermedad es: "+ indice);
-			System.out.println("Ahora estas Enfermo.");
-			System.out.println("Pierdes " + indice + " de vida.");
+			System.out.println("El Nivel de Enfermedad es: "+ indice);
+			System.out.println(player.getName() + " ahora esta Enfermo.");
+			System.out.println(player.getName() + " pierde " + indice + " de vida.");
 		} else {
 			nivelDeEnfermedad = indice;
 			System.out.println("Zombie a aplicado un efecto de estado negativo.");

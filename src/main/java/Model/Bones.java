@@ -7,8 +7,8 @@ public class Bones extends Enemigo {
 		return "Bones";
 	}
 
-	public void atacar() {
-
+	public int atacar(Personaje player) {
+		return player.getVida();
 	}
 
 	public Bones(int vida, int fuerza, int velocidad, int huesos) {

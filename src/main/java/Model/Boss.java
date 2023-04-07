@@ -16,7 +16,7 @@ public class Boss extends Enemigo {
 		int indice = (int) ((Math.random()*100)+1);
 		indice = this.indicadorDeCansancio + indice;
 		if (indice == 100){
-			System.out.println("Boss a aplicado un efecto de estado negativo.");
+			System.out.println("Boss ha aplicado un efecto de estado negativo.");
 			System.out.println("Tu indicador de Cansancio es: "+ indice);
 			System.out.println("Ahora estas dormido.");
 			return 100;
@@ -29,10 +29,21 @@ public class Boss extends Enemigo {
 		return this.indicadorDeCansancio;
 	}
 
-	public void atacar() {
+	public int atacar(Personaje player) {
+		ataqueDeBoss();
+		int damage = super.getFuerza();
+		int vida = player.getVida();
+		ponerADormir();
 		if (ponerADormir() == 100){
 			System.out.println("Boss realiza un ataque devastador.");
-			System.out.println();
+			vida = vida - damage*4;
+			player.setVida(vida);
+			return player.getVida();
+		} else {
+			System.out.println("Boss realiza un ataque.");
+			vida = vida - damage;
+			player.setVida(vida);
+			return player.getVida();
 		}
 	}
 
